@@ -1,8 +1,21 @@
 import React, { Component } from "react";
 import "./BookingTicket.css";
 import ThongTinDatGhe from "./ThongTinDatGhe";
+import danhSachGheData from "../Data/danhSachGhe.json";
+import HangGhe from "./HangGhe";
 
 export default class BookingTicket extends Component {
+  
+  renderHangGhe = () => {
+    return danhSachGheData.map((hangGhe, index) => {
+      return (
+        <div key={index}>
+          <HangGhe hangGhe={hangGhe} soHangGhe={index}/>
+        </div>
+      );
+    });
+  };
+
   render() {
     return (
       <div className="bookingTicket">
@@ -13,12 +26,15 @@ export default class BookingTicket extends Component {
                 <div className="text-warning font-weight-bold" style={{ fontSize: "35px" }}>
                   ĐẶT VÉ XEM PHIM CYBERLEARN.VN
                 </div>
-                <div className="mt-4 text-light font-weight-bold" style={{ fontSize: "25px" }}>
+                <div className="mt-4 text-light font-weight-bold" style={{ fontSize: "25px", marginLeft: '35px' }}>
                   Màn hình
                 </div>
-                <div className="d-flex justify-content-center mt-2">
-                  <div className="screen"></div>
+
+                <div className="d-flex flex-column mt-2">
+                  <div className="d-flex justify-content-center"><div className="screen mb-3"></div></div>
+                  <div className="canhGiua">{this.renderHangGhe()}</div>
                 </div>
+
               </div>
               <div className="col-4">
                 <div className="text-warning font-weight-bold mt-1" style={{ fontSize: "30px" }}>
