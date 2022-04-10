@@ -38,11 +38,8 @@ export default class HangGhe extends Component {
       return <div className="ml-3 mb-2 canhGiua">{this.renderSoHang()}</div>;
     } else {
       return (
-        <div className="canhGiua d-flex justify-content-center">
-          <span
-            className="text-warning"
-            style={{ width: "30px", maxWidth: "30px" }}
-          >
+        <div className="canhGiua d-flex justify-content-center align-items-center">
+          <span className="text-warning" style={{ fontSize: "24px", width: "35px", maxWidth: "35px" }}>
             {this.props.hangGhe.hang}
           </span>
           {this.renderGhe()}

@@ -23,10 +23,10 @@ export default class BookingTicket extends Component {
           <div className="container-fluid mt-3">
             <div className="row">
               <div className="col-8 text-center">
-                <div className="text-warning font-weight-bold" style={{ fontSize: "35px" }}>
+                <div className="text-warning font-weight-bold" style={{ fontSize: "35px", marginLeft: "35px" }}>
                   ĐẶT VÉ XEM PHIM CYBERLEARN.VN
                 </div>
-                <div className="mt-4 text-light font-weight-bold" style={{ fontSize: "25px", marginLeft: '35px' }}>
+                <div className="mt-3 text-light font-weight-bold" style={{ fontSize: "25px", marginLeft: '35px' }}>
                   Màn hình
                 </div>
 
