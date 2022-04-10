@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 
-export default class HangGhe extends Component {
+import { connect } from "react-redux";
+import { datGheAction } from "../Redux/actions/BTDatVeActions";
+
+class HangGhe extends Component {
   renderGhe = () => {
     return this.props.hangGhe.danhSachGhe.map((ghe, index) => {
+      // Trạng thái ghế đã bị người khác đặt
       let cssGheDaDat = "";
       let disabled = false;
       if (ghe.daDat) {
@@ -10,12 +14,23 @@ export default class HangGhe extends Component {
         disabled = true;
       }
 
+      //Xét trạng thái ghế đang đặt
+      let cssGheDangDat = ''
+      let indexGheDangDat = this.props.danhSachGheDangDat.findIndex(gheDangDat => gheDangDat.soGhe === ghe.soGhe)
+        if(indexGheDangDat !== -1){
+          cssGheDangDat = 'gheDangChon'
+        }
+      
       return (
         <button
-          disabled={disabled}
-          className={`ghe ${cssGheDaDat}`}
           key={index}
+          title={ghe.soGhe}
+          disabled={disabled}
+          className={`ghe ${cssGheDaDat} ${cssGheDangDat}`}
           style={{ fontWeight: "bold" }}
+          onClick={() =>{
+            this.props.datGhe(ghe)
+          }}
         >
           {ghe.soGhe}
         </button>
@@ -35,17 +50,23 @@ export default class HangGhe extends Component {
 
   renderHangGhe = () => {
     if (this.props.soHangGhe === 0) {
-      return <div className="nganCachGiuaHang canhGiua ml-3 mb-2">{this.renderSoHang()}</div>;
-    } else {
       return (
-        <div className="nganCachGiua canhGiua d-flex justify-content-center align-items-center">
-          <span className="text-warning" style={{ fontSize: "24px", width: "35px", maxWidth: "35px" }}>
-            {this.props.hangGhe.hang}
-          </span>
-          {this.renderGhe()}
+        <div className="nganCachGiuaHang canhGiua ml-3 mb-2">
+          {this.renderSoHang()}
         </div>
       );
     }
+    return (
+      <div className="nganCachGiua canhGiua d-flex justify-content-center align-items-center">
+        <span
+          className="text-warning"
+          style={{ fontSize: "24px", width: "35px", maxWidth: "35px" }}
+        >
+          {this.props.hangGhe.hang}
+        </span>
+        {this.renderGhe()}
+      </div>
+    );
   };
 
   render() {
@@ -59,3 +80,20 @@ export default class HangGhe extends Component {
     );
   }
 }
+
+const mapStateToProps = (rootReducer) => {
+  return {
+    danhSachGheDangDat: rootReducer.BTDatVeReducer.danhSachGheDangDat
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    datGhe: (ghe) => {
+      dispatch(datGheAction(ghe))
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HangGhe);

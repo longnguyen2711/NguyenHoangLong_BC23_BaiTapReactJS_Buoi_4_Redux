@@ -1,7 +1,9 @@
 import {combineReducers, createStore} from 'redux'
 
-const rootReducer = combineReducers({
+import {BTDatVeReducer} from './reducer/BTDatVeReducer';
 
+const rootReducer = combineReducers({
+    BTDatVeReducer: BTDatVeReducer,
 
 
 });
