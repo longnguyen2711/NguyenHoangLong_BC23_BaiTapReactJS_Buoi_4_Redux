@@ -35,10 +35,10 @@ export default class HangGhe extends Component {
 
   renderHangGhe = () => {
     if (this.props.soHangGhe === 0) {
-      return <div className="ml-3 mb-2 canhGiua">{this.renderSoHang()}</div>;
+      return <div className="nganCachGiuaHang canhGiua ml-3 mb-2">{this.renderSoHang()}</div>;
     } else {
       return (
-        <div className="canhGiua d-flex justify-content-center align-items-center">
+        <div className="nganCachGiua canhGiua d-flex justify-content-center align-items-center">
           <span className="text-warning" style={{ fontSize: "24px", width: "35px", maxWidth: "35px" }}>
             {this.props.hangGhe.hang}
           </span>
