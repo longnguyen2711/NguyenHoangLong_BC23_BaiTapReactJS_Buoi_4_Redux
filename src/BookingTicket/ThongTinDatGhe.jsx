@@ -6,6 +6,37 @@ import { huyGheAction } from "../Redux/actions/BTDatVeActions";
 //import { HUY_GHE } from "../Redux/types/BTDatVeType";
 
 class ThongTinDatGhe extends Component {
+
+  tongGheDaDat = () => {
+    return this.props.danhSachGheData.map((hangGhe, index) => {
+      let tongGhe = 0
+      for (let ghe of hangGhe.danhSachGhe) {
+        if(ghe.daDat){  
+          tongGhe += 1
+        } 
+      }
+      console.log(typeof tongGhe)
+      return tongGhe
+      // return (
+      //   <span key={index}>
+     
+      //     {hangGhe.danhSachGhe.reduce((gheDaDat, ghe, index) => {
+
+      //       // Thêm thuộc tính số lượng vào từng ghế của danh sách ghế
+      //       ghe= {...ghe, soLuong: 1}
+
+      //       // Nếu ghế đã được đặt (datDat === true) thì cộng dồn vào tổng số ghê
+      //       if(ghe.daDat){  
+      //         gheDaDat += ghe.soLuong
+      //       } 
+      //       return gheDaDat
+      //     }, 0)
+      //     }
+      //   </span>
+      // );
+    });
+  };
+
   render() {
     return (
       <div>
@@ -14,7 +45,7 @@ class ThongTinDatGhe extends Component {
             <div className="mb-2 row">
               <button className="gheDuocChon mr-3 mt-2"></button>
               <span className="text-light col-7" style={{ fontSize: "30px" }}>Ghế đã đặt</span>
-              <span className="text-light" style={{ fontSize: "30px" }}>(0)</span>
+              <span id="d" className="text-light" style={{ fontSize: "30px" }}>({this.tongGheDaDat()})</span>
             </div>
             <div className="mb-2 row">
               <button className="gheDangChon mr-3 mt-2"></button>
