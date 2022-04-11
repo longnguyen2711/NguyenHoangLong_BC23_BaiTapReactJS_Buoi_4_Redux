@@ -40,7 +40,7 @@ export default class BookingTicket extends Component {
                 <div className="text-warning font-weight-bold mt-1" style={{ fontSize: "30px" }}>
                   DANH SÁCH GHẾ BẠN CHỌN
                 </div>
-                <ThongTinDatGhe />
+                <ThongTinDatGhe danhSachGheData={danhSachGheData}/>
               </div>
             </div>
           </div>

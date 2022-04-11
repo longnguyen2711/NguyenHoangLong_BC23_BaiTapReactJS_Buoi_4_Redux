@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { datGheAction } from "../Redux/actions/BTDatVeActions";
 
-class HangGhe extends Component {
+class HangGhe extends Component { 
   renderGhe = () => {
     return this.props.hangGhe.danhSachGhe.map((ghe, index) => {
       // Trạng thái ghế đã bị người khác đặt
