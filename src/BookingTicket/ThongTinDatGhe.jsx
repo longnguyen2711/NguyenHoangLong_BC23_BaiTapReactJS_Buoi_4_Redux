@@ -28,7 +28,7 @@ class ThongTinDatGhe extends Component {
             </div>
           </div>
         </div>
-        <div className="mt-5">
+        <div className="mt-4" style={{ height: "302px", overflowY: "auto" }}>
           <table className="text-center" border="2">
             <thead>
               <tr className="text-warning" style={{ fontSize: "25px" }}>
@@ -55,7 +55,7 @@ class ThongTinDatGhe extends Component {
                     <td>{gheDangDat.gia.toLocaleString()}</td>
                     <td>
                       <button
-                        className="btn btn-danger"
+                        className="btn btn-danger btn-sm"
                         onClick={() => {
                           this.props.dispatch(huyGheAction(gheDangDat.soGhe));
                           // {type: HUY_GHE,

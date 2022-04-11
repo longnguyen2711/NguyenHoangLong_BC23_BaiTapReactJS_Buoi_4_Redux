@@ -28,9 +28,7 @@ class HangGhe extends Component {
           disabled={disabled}
           className={`ghe ${cssGheDaDat} ${cssGheDangDat}`}
           style={{ fontWeight: "bold" }}
-          onClick={() =>{
-            this.props.datGhe(ghe)
-          }}
+          onClick={() =>{this.props.datGhe(ghe)}}
         >
           {ghe.soGhe}
         </button>
@@ -58,10 +56,7 @@ class HangGhe extends Component {
     }
     return (
       <div className="nganCachGiua canhGiua d-flex justify-content-center align-items-center">
-        <span
-          className="text-warning"
-          style={{ fontSize: "24px", width: "35px", maxWidth: "35px" }}
-        >
+        <span className="text-warning" style={{ fontSize: "24px", width: "35px", maxWidth: "35px" }}>
           {this.props.hangGhe.hang}
         </span>
         {this.renderGhe()}
@@ -71,10 +66,7 @@ class HangGhe extends Component {
 
   render() {
     return (
-      <div
-        className="text-light text-left mt-1 font-weight-bold"
-        style={{ fontSize: "25px" }}
-      >
+      <div className="text-light text-left mt-1 font-weight-bold" style={{ fontSize: "25px" }}>
         {this.renderHangGhe()}
       </div>
     );

@@ -2,7 +2,7 @@ import { DAT_GHE, HUY_GHE } from "../types/BTDatVeType";
 
 const stateDefault = {
   danhSachGheDangDat: [
-    //{ soGhe: "A1", giá: 1000 }
+    //{ soGhe: "A1", gia: 1000 }
   ],
 };
 
@@ -10,14 +10,13 @@ export const BTDatVeReducer = (state = stateDefault, action) => {
   switch (action.type) {
     case DAT_GHE: {
       let danhSachGheDangDatUpdate = [...state.danhSachGheDangDat];
-      // let index = danhSachGheDangDatUpdate.findIndex(
-      //   gheDangDat => (gheDangDat.soGhe = action.ghe.soGhe)
-      // );
-      // if (index !== -1) {
-      //   danhSachGheDangDatUpdate.splice(index, 1);
-      // }
 
-      danhSachGheDangDatUpdate.push(action.ghe);
+      let index = danhSachGheDangDatUpdate.findIndex((gheDangDat) => gheDangDat.soGhe === action.ghe.soGhe);
+      if (index !== -1) {
+        danhSachGheDangDatUpdate.splice(index, 1);
+      } else {
+        danhSachGheDangDatUpdate.push(action.ghe);
+      }
 
       state.danhSachGheDangDat = danhSachGheDangDatUpdate;
       return { ...state };
@@ -25,9 +24,7 @@ export const BTDatVeReducer = (state = stateDefault, action) => {
 
     case HUY_GHE: {
       let danhSachGheDangDatUpdate = [...state.danhSachGheDangDat];
-      let index = danhSachGheDangDatUpdate.findIndex(
-        (gheDangDat) => (gheDangDat.soGhe = action.soGhe)
-      );
+      let index = danhSachGheDangDatUpdate.findIndex((gheDangDat) => (gheDangDat.soGhe = action.soGhe));
       if (index !== -1) {
         danhSachGheDangDatUpdate.splice(index, 1);
       }
