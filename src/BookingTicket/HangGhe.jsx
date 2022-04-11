@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { datGheAction } from "../Redux/actions/BTDatVeActions";
 
-class HangGhe extends Component { 
+class HangGhe extends Component {
   renderGhe = () => {
     return this.props.hangGhe.danhSachGhe.map((ghe, index) => {
       // Trạng thái ghế đã bị người khác đặt
@@ -15,12 +15,14 @@ class HangGhe extends Component {
       }
 
       //Xét trạng thái ghế đang đặt
-      let cssGheDangDat = ''
-      let indexGheDangDat = this.props.danhSachGheDangDat.findIndex(gheDangDat => gheDangDat.soGhe === ghe.soGhe)
-        if(indexGheDangDat !== -1){
-          cssGheDangDat = 'gheDangChon'
-        }
-      
+      let cssGheDangDat = "";
+      let indexGheDangDat = this.props.danhSachGheDangDat.findIndex(
+        (gheDangDat) => gheDangDat.soGhe === ghe.soGhe
+      );
+      if (indexGheDangDat !== -1) {
+        cssGheDangDat = "gheDangChon";
+      }
+
       return (
         <button
           key={index}
@@ -28,7 +30,9 @@ class HangGhe extends Component {
           disabled={disabled}
           className={`ghe ${cssGheDaDat} ${cssGheDangDat}`}
           style={{ fontWeight: "bold" }}
-          onClick={() =>{this.props.datGhe(ghe)}}
+          onClick={() => {
+            this.props.datGhe(ghe);
+          }}
         >
           {ghe.soGhe}
         </button>
@@ -39,7 +43,11 @@ class HangGhe extends Component {
   renderSoHang = () => {
     return this.props.hangGhe.danhSachGhe.map((hang, index) => {
       return (
-        <button disabled key={index} className="font-weight-bold rowNumber">
+        <button
+          disabled
+          key={index}
+          className="font-weight-bold text-warning rowNumber fontGame"
+        >
           {hang.soGhe}
         </button>
       );
@@ -56,7 +64,10 @@ class HangGhe extends Component {
     }
     return (
       <div className="nganCachGiua canhGiua d-flex justify-content-center align-items-center">
-        <span className="text-warning" style={{ fontSize: "24px", width: "35px", maxWidth: "35px" }}>
+        <span
+          className="text-warning fontGame"
+          style={{ fontSize: "24px", width: "35px", maxWidth: "35px" }}
+        >
           {this.props.hangGhe.hang}
         </span>
         {this.renderGhe()}
@@ -66,7 +77,10 @@ class HangGhe extends Component {
 
   render() {
     return (
-      <div className="text-light text-left mt-1 font-weight-bold" style={{ fontSize: "25px" }}>
+      <div
+        className="text-light text-left mt-1 font-weight-bold"
+        style={{ fontSize: "25px" }}
+      >
         {this.renderHangGhe()}
       </div>
     );
@@ -75,17 +89,16 @@ class HangGhe extends Component {
 
 const mapStateToProps = (rootReducer) => {
   return {
-    danhSachGheDangDat: rootReducer.BTDatVeReducer.danhSachGheDangDat
-  }
+    danhSachGheDangDat: rootReducer.BTDatVeReducer.danhSachGheDangDat,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     datGhe: (ghe) => {
-      dispatch(datGheAction(ghe))
-    }
-  }
-}
-
+      dispatch(datGheAction(ghe));
+    },
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HangGhe);
